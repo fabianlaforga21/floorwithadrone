@@ -249,8 +249,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 1;
   width: clamp(240px, 26vw, 330px);
   height: clamp(300px, 32vw, 410px);
-  object-fit: cover;
-  border-radius: 18px;
+  object-fit: contain;
 }
 .about-photo .label {
   position: absolute;
@@ -279,7 +278,7 @@ a { color: inherit; text-decoration: none; }
   background-position: center;
   background-image:
     linear-gradient(180deg, rgba(30, 60, 55, 0.35) 0%, rgba(30, 60, 55, 0.45) 100%),
-    url("https://picsum.photos/seed/ocean1/1600/900");
+    url("images/book-bg.jpg");
 }
 .book h2 {
   text-align: center;
