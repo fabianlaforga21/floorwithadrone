@@ -1,0 +1,429 @@
+/* =========================================================
+   Floor with a drone — stylesheet
+   Kleuren, fonts en layout. Eén bestand voor de hele site.
+   ========================================================= */
+
+:root {
+  --ink: #1b1f1c;
+  --muted: #9aa39c;
+  --muted-dark: #5d6962;
+  --sage: #9cbfa9;
+  --sage-deep: #8eb39d;
+  --mint-1: #cfe3d6;
+  --mint-2: #e9f3ec;
+  --mint-3: #f4faf6;
+  --white: #ffffff;
+  --shadow-sm: 0 6px 18px rgba(60, 90, 70, 0.10);
+  --shadow-md: 0 14px 40px rgba(50, 80, 62, 0.16);
+  --radius: 22px;
+  --max: 1240px;
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-hand: "Caveat", cursive;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background:
+    radial-gradient(120% 80% at 10% 0%, var(--mint-2) 0%, transparent 55%),
+    linear-gradient(135deg, var(--mint-1) 0%, var(--mint-3) 45%, var(--white) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(6px);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 0;
+}
+.logo {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  gap: clamp(22px, 3vw, 44px);
+  list-style: none;
+  font-weight: 500;
+  font-size: 1.02rem;
+}
+.nav-links a {
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 2px;
+  background: var(--ink);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle span {
+  width: 26px; height: 2px;
+  background: var(--ink);
+  transition: 0.3s;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: clamp(40px, 7vw, 80px) 0 clamp(30px, 4vw, 50px);
+}
+.hero h1 {
+  font-weight: 700;
+  font-size: clamp(2.3rem, 5.4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  max-width: 16ch;
+  margin: 0 auto;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 46ch;
+  margin: 22px auto 0;
+  font-size: 1.05rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1.02rem;
+  background: var(--white);
+  color: var(--ink);
+  border: 0;
+  padding: 16px 40px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.btn-arrow .arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--white);
+}
+.hero .btn { margin-top: 34px; }
+
+/* ---------- Gallery (peeking images) ---------- */
+.gallery {
+  position: relative;
+  height: clamp(260px, 34vw, 380px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 0;
+}
+.gallery .photo {
+  border-radius: var(--radius);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+.gallery .center {
+  width: clamp(320px, 40vw, 480px);
+  height: 100%;
+  z-index: 2;
+}
+.gallery .side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(220px, 22vw, 300px);
+  height: clamp(190px, 22vw, 250px);
+  z-index: 1;
+}
+.gallery .side.left  { left: -70px; }
+.gallery .side.right { right: -70px; }
+
+/* ---------- Arch section ---------- */
+.arch-section { padding-top: clamp(50px, 7vw, 90px); }
+.arch {
+  background: var(--sage);
+  border-radius: 50% 50% 0 0 / 26% 26% 0 0;
+  padding: clamp(70px, 9vw, 130px) 0 clamp(50px, 7vw, 90px);
+  position: relative;
+}
+.arch .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+}
+.arch h2 {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  max-width: 9ch;
+}
+.arch p {
+  margin: 22px 0 30px;
+  max-width: 42ch;
+  color: var(--ink);
+}
+.arch .photo {
+  width: 100%;
+  height: clamp(260px, 32vw, 380px);
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.55);
+  padding: 10px 12px 10px 26px;
+}
+
+/* ---------- Who am I ---------- */
+.about {
+  padding: clamp(60px, 9vw, 120px) 0;
+}
+.about .wrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(30px, 6vw, 80px);
+  align-items: center;
+}
+.about-photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+}
+.about-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, rgba(140, 190, 158, 0.85) 0%, rgba(190, 222, 200, 0.35) 45%, transparent 72%);
+  z-index: 0;
+}
+.about-photo img {
+  position: relative;
+  z-index: 1;
+  width: clamp(240px, 26vw, 330px);
+  height: clamp(300px, 32vw, 410px);
+  object-fit: cover;
+  border-radius: 18px;
+}
+.about-photo .label {
+  position: absolute;
+  top: 8px; right: 6%;
+  z-index: 2;
+  font-family: var(--font-hand);
+  font-size: 1.7rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.about-photo .label svg { width: 42px; height: 32px; }
+.about h2 {
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  letter-spacing: -0.5px;
+}
+.about p { margin-top: 20px; max-width: 46ch; color: var(--muted-dark); }
+
+/* ---------- How to book ---------- */
+.book {
+  position: relative;
+  color: var(--white);
+  padding: clamp(70px, 9vw, 120px) 0 clamp(90px, 11vw, 150px);
+  background-size: cover;
+  background-position: center;
+  background-image:
+    linear-gradient(180deg, rgba(30, 60, 55, 0.35) 0%, rgba(30, 60, 55, 0.45) 100%),
+    url("https://picsum.photos/seed/ocean1/1600/900");
+}
+.book h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  margin-bottom: clamp(40px, 5vw, 60px);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.step {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 30px 26px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.step .num {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.step h3 { font-size: 1.4rem; font-weight: 700; margin: 4px 0 12px; }
+.step p { color: var(--muted-dark); font-size: 0.96rem; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--mint-3);
+  padding: clamp(40px, 5vw, 60px) 0;
+  border-top: 1px solid rgba(140, 180, 158, 0.25);
+}
+.site-footer .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 30px;
+  align-items: start;
+}
+.site-footer h4 {
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 16px;
+  font-size: 0.98rem;
+}
+.site-footer ul { list-style: none; display: grid; gap: 10px; font-weight: 600; }
+.site-footer .social li { display: flex; align-items: center; gap: 10px; }
+.site-footer .email {
+  font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* ---------- Contact page ---------- */
+.contact {
+  padding: clamp(50px, 7vw, 90px) 0 clamp(80px, 10vw, 130px);
+}
+.contact .wrap {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(30px, 5vw, 70px);
+  align-items: start;
+}
+.contact h1 {
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.0;
+  letter-spacing: -1px;
+}
+.contact .lead { color: var(--muted); margin: 20px 0 36px; max-width: 30ch; }
+.field {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  border: 0;
+  border-radius: 999px;
+  padding: 20px 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+  outline: none;
+}
+.field:focus { box-shadow: var(--shadow-md); }
+.message-card {
+  background: var(--white);
+  border-radius: 28px;
+  box-shadow: var(--shadow-md);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+textarea.field {
+  border-radius: 18px;
+  min-height: 300px;
+  resize: vertical;
+  margin: 0;
+  box-shadow: none;
+}
+textarea.field:focus { box-shadow: none; }
+.message-card .btn { align-self: flex-start; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 100%; right: 16px;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--white);
+    padding: 22px 30px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
+    display: none;
+  }
+  .nav-links.open { display: flex; }
+
+  .gallery .side { display: none; }
+  .gallery .center { width: min(90vw, 480px); }
+
+  .arch .wrap,
+  .about .wrap,
+  .contact .wrap { grid-template-columns: 1fr; }
+  .arch h2, .about h2 { max-width: none; }
+  .about-photo { order: -1; }
+
+  .steps { grid-template-columns: 1fr; }
+
+  .site-footer .wrap { grid-template-columns: 1fr 1fr; }
+  .site-footer .email-col { grid-column: 1 / -1; }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 20px; }
+  .site-footer .wrap { grid-template-columns: 1fr; }
+}
